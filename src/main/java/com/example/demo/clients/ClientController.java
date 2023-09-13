@@ -1,9 +1,7 @@
 package com.example.demo.clients;
 
-import com.example.demo.clients.Service.ClientService;
-import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +23,10 @@ public class ClientController {
     }
 
     @PostMapping
-    public void registerNewClient(@RequestBody Client client) {
-        ClientService.addNewClient(client);
+    public ResponseEntity<String> registerNewClient(@RequestBody Client client) {
+
+        String api = ClientService.addNewClient(client);
+
+        return ResponseEntity.ok(api);
     }
 }
