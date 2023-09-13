@@ -1,5 +1,6 @@
 package com.example.demo.positions;
 
+import com.example.demo.Model.PositionDTO;
 import com.example.demo.clients.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +30,7 @@ public class PositionController {
     }
 
     @GetMapping("/")
-    public List<Position> getComplexPositions(@RequestHeader(HttpHeaders.AUTHORIZATION) String apiKey, @RequestBody Position position){
+    public List<PositionDTO> getComplexPositions(@RequestHeader(HttpHeaders.AUTHORIZATION) String apiKey, @RequestBody Position position){
         if(!ClientService.CheckKey((apiKey))){
             throw new IllegalArgumentException("api key not found");
         }

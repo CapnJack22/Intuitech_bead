@@ -1,9 +1,11 @@
 package com.example.demo.positions;
 
+import com.example.demo.Model.PositionDTO;
 import com.example.demo.clients.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +34,13 @@ public class PositionService {
         return positionRepository.findAll();
     }
 
-    public List<Position> getComplexPositions(Position position) {
-        return positionRepository.findPositionsBy(position.getName(), position.getLocation());
+    public List<PositionDTO> getComplexPositions(Position position) {
+        List<Position> positionsFromDb = positionRepository.findPositionsBy(position.getName(), position.getLocation());
+        List<PositionDTO> result = new ArrayList<>();
+        for (Position p : positionsFromDb
+             ) {
+            result.add(new PositionDTO(p, URL.concat(String.valueOf(p.getId()))));
+        }
+        return result;
     }
 }
