@@ -1,8 +1,6 @@
 package com.example.demo.clients;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +8,10 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @Entity
-@Table
+@Table(name = "clients")
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String name;
     private String email;
