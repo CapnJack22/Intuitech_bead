@@ -10,12 +10,11 @@ import lombok.Data;
 @Table(name = "positions")
 public class Position {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String name;
     private String location;
 
-    //another constructor?
     public Position() {
 
     }
