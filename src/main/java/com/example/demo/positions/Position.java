@@ -15,6 +15,11 @@ public class Position {
     private String name;
     private String location;
 
+    public Position(String name, String location){
+        this.name=name;
+        this.location=location;
+    }
+
     public Position() {
 
     }
