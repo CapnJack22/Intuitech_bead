@@ -2,10 +2,9 @@ package com.example.demo.clients;
 
 import com.example.demo.clients.Service.ClientService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,10 @@ public class ClientController {
     @GetMapping
     public List<Client> getClients() {
         return ClientService.getClients();
+    }
+
+    @PostMapping
+    public void registerNewClient(@RequestBody Client client) {
+        ClientService.addNewClient(client);
     }
 }
