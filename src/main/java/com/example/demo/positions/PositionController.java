@@ -28,14 +28,14 @@ public class PositionController {
         return PositionService.getPositions();
     }
 
-//    @GetMapping("/")
-//    public List<Position> getComplexPositions(@RequestHeader(HttpHeaders.AUTHORIZATION) String apiKey, @RequestBody Position position){
-//        if(!ClientService.CheckKey((apiKey))){
-//            throw new IllegalArgumentException("api key not found");
-//        }
-//
-//        return PositionService.getComplexPositions(position);
-//    }
+    @GetMapping("/")
+    public List<Position> getComplexPositions(@RequestHeader(HttpHeaders.AUTHORIZATION) String apiKey, @RequestBody Position position){
+        if(!ClientService.CheckKey((apiKey))){
+            throw new IllegalArgumentException("api key not found");
+        }
+
+        return PositionService.getComplexPositions(position);
+    }
 
     @PostMapping
     public ResponseEntity<String> registerNewPosition( @RequestHeader(HttpHeaders.AUTHORIZATION) String apiKey, @RequestBody Position position){
