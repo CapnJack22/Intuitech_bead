@@ -7,12 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PositionService {
 
-    private final ClientRepository clientRepository;
     private final PositionRepository positionRepository;
 
     @Autowired
-    public PositionService(ClientRepository clientRepository, PositionRepository positionRepository){
-        this.clientRepository = clientRepository;
+    public PositionService(PositionRepository positionRepository){
         this.positionRepository = positionRepository;
     }
 }
