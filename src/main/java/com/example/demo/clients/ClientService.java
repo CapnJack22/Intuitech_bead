@@ -28,6 +28,10 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
+    public boolean CheckKey(String key) {
+        return clientRepository.existsById(key);
+    }
+
     //name max 100 karakter [y]
     //unique email [y]
     //valid email format [y]

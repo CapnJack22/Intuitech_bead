@@ -2,11 +2,12 @@ package com.example.demo.positions;
 
 import com.example.demo.clients.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/positions")
@@ -21,11 +22,22 @@ public class PositionController {
         PositionService = positionService;
     }
 
+    @GetMapping
+    public List<Position> getPositions(){
+        return PositionService.getPositions();
+    }
+
     @PostMapping
-    public ResponseEntity<String> registerNewPosition(@RequestBody Position position){
+    public ResponseEntity<String> registerNewPosition( @RequestHeader(HttpHeaders.AUTHORIZATION) String apiKey, @RequestBody Position position){
 
-        String s=String.join("");
+        if(!ClientService.CheckKey(apiKey)) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body("api key not found");
+        }
 
-        return ResponseEntity.ok(s);
+        String response = PositionService.addNewPosition(position);
+
+        return ResponseEntity.ok(response);
     }
 }
